@@ -2,6 +2,7 @@ var fs = require('fs'),
     chokidar = require('chokidar'),
     paste = require('copy-paste'),
     nodecr = require('nodecr'),
+    prefix = 'Screen Shot ',
     suffix = '.png',
     path = getUserHome() + '/Desktop',
     watcher = chokidar.watch(path, {ignored: /\/\./, persistent: true});
@@ -29,5 +30,6 @@ function getUserHome() {
 }
 
 function valid(file) {
+    if (file.indexOf(prefix) < 0) return false;
     return file.indexOf(suffix, file.length - suffix.length) !== -1;
 }
